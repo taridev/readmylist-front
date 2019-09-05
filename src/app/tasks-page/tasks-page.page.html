@@ -9,14 +9,14 @@
     <ion-item>
       <ion-item  class="centerInput">
         <ion-input id="inputModif" placeholder="Entrez une tâche"></ion-input>
-        <ion-icon name="add-circle-outline"></ion-icon>   
+        <ion-icon name="add-circle-outline" (click)="onClickAddTask()"></ion-icon>   
       </ion-item >
     </ion-item>
 
       <ion-list>
           <ion-item *ngFor="let task of tasks" [class]="task.done ? 'barre' : ''">
             <ion-label>{{task.title}} - ffdd</ion-label>
-            <ion-checkbox color="primary" checked slot="start"></ion-checkbox>
+            <ion-checkbox color="primary" [checked]="task.done" slot="start"></ion-checkbox>
             <ion-icon [name]="task.prioritize ? 'star' : 'star-outline'"></ion-icon>
           </ion-item>
         </ion-list>
