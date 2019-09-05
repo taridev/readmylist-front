@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ITaskListServiceService } from './itask-list-service.service';
 import { TaskList } from '../model/task-list';
 import { environment } from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -17,7 +16,7 @@ const HTTP_OPTION = {
 @Injectable({
   providedIn: 'root'
 })
-export class TaskListService implements ITaskListServiceService {
+export class TaskListService {
   constructor(private http: HttpClient
     ) {
 
@@ -25,15 +24,13 @@ export class TaskListService implements ITaskListServiceService {
    getByTitlePattern(pattern: string): TaskList[] {
     throw new Error('Method not implemented.');
   }
-  getById(id: number): any {
-    const tasklist = this.http
-        .get<TaskList>(`${API_URL}list/${id}`, HTTP_OPTION)
-        .subscribe(task => {
-          console.log(task);
-        }, error => console.log(error));
-    console.log(tasklist);
-    return tasklist;
+
+  getById(id: number) {
+      return this.http
+          .get(`${API_URL}list/${id}`);
   }
+
+
   getAll(): TaskList[] {
     throw new Error('Method not implemented.');
   }

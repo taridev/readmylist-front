@@ -5,4 +5,8 @@ export class TaskList {
     title: string;
     creationDate: Date;
     tasks: Task[];
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

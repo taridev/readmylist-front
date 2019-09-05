@@ -8,14 +8,11 @@ import { Task } from '../model/task';
 export interface ITaskListServiceService {
 
   getById(id: number): any;
-
-  getAll(): TaskList[];
-
-  create(taskList: TaskList): TaskList;
-  update(taskList: TaskList): TaskList;
+  getAll(): any[];
+  create(taskList: TaskList): any;
+  update(taskList: TaskList): any;
   delete(taskList: TaskList): void;
-  getByTitlePattern(pattern: string): TaskList[];
-
-  addTask(taskList: TaskList, task: Task): TaskList;
+  getByTitlePattern(pattern: string): any[];
+  addTask(taskList: TaskList, task: Task): any;
 
 }
