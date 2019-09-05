@@ -14,7 +14,7 @@ export class TaskServiceMock {
       creationDate: null ,
       dueDate: null ,
       done: null ,
-      prioritize: null,
+      priorize: null,
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export class TaskServiceMock {
       creationDate:  null,
       dueDate: null,
       done: null,
-      prioritize: null,
+      priorize: null,
     }
   ];
 

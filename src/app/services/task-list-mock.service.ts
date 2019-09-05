@@ -22,7 +22,7 @@ export class TaskListMockService implements ITaskListServiceService {
               creationDate: null,
               dueDate: null,
               done: false,
-              prioritize: false
+              priorize: false
           },
           {
             id: 2,
@@ -30,7 +30,7 @@ export class TaskListMockService implements ITaskListServiceService {
             creationDate: null,
             dueDate: null,
             done: true,
-            prioritize: true
+            priorize: true
         },
         {
           id: 3,
@@ -38,7 +38,7 @@ export class TaskListMockService implements ITaskListServiceService {
           creationDate: null,
           dueDate: null,
           done: false,
-          prioritize: false
+          priorize: false
         }
       ]
     }
