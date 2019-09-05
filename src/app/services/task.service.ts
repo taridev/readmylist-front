@@ -4,7 +4,7 @@ import { Task } from '../model/task';
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService {
+export class TaskServiceMock {
 
   tasks: Task[] =
   [
