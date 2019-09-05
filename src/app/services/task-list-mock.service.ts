@@ -22,7 +22,23 @@ export class TaskListMockService implements ITaskListServiceService {
               dueDate: null,
               done: false,
               prioritize: false
-          }
+          },
+          {
+            id: 2,
+            title: '2ère tache',
+            creationDate: null,
+            dueDate: null,
+            done: true,
+            prioritize: true
+        },
+        {
+          id: 3,
+          title: '3ère tache',
+          creationDate: null,
+          dueDate: null,
+          done: false,
+          prioritize: false
+        }
       ]
     }
   ];
