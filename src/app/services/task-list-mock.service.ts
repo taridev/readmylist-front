@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ITaskListServiceService } from './itask-list-service.service';
 import { TaskList } from '../model/task-list';
+import { Task } from '../model/task';
 
 @Injectable({
   providedIn: 'root'
@@ -69,4 +70,8 @@ export class TaskListMockService implements ITaskListServiceService {
     // throw new Error('Method not implemented.');
     return null;
   }
+
+    addTask(taskList: TaskList, task: Task): TaskList {
+        return undefined;
+    }
 }

@@ -3,6 +3,7 @@ import { ITaskListServiceService } from './itask-list-service.service';
 import { TaskList } from '../model/task-list';
 import { environment } from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Task } from '../model/task';
 
 const API_URL = environment.apiUrl;
 const HTTP_OPTION = {
@@ -44,6 +45,10 @@ export class TaskListService implements ITaskListServiceService {
   }
   delete(taskList: TaskList) {
     throw new Error('Method not implemented.');
+  }
+
+  addTask(taskList: TaskList, task: Task): TaskList {
+    return undefined;
   }
 
 
