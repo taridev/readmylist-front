@@ -6,7 +6,7 @@ import { TaskList } from '../model/task-list';
 })*/
 export interface ITaskListServiceService {
 
-  getById(id: number): TaskList;
+  getById(id: number): any;
 
   getAll(): TaskList[];
 

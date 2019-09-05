@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITaskListServiceService } from './itask-list-service.service';
 import { TaskList } from '../model/task-list';
-import { of } from 'rxjs';
-import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +27,7 @@ export class TaskListMockService implements ITaskListServiceService {
     }
   ];
 
-  getById(id: number): TaskList {
+  getById(id: number): any {
    return this.tasklists.find(t => t.id === id);
   }
 
