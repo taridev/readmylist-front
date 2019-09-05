@@ -21,6 +21,11 @@ export class TasksPagePage implements OnInit {
   ngOnInit() {
   }
 
+  onClickAddTask() {
+    // this.taskLIstMockService.create();
+    console.log('ADD TACHE');
+  }
+
 
 
 }
