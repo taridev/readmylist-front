@@ -1,0 +1,46 @@
+app-login {
+    
+}
+
+$white-color: #fff;
+$height100: 100%;
+
+ion-grid {
+    width:100%;
+    height: $height100;
+    
+}
+.content {
+  
+}
+h4 {
+    color: #fff;
+    font-weight: 500;
+}
+
+ion-row {
+    height: $height100;
+    background: url('/assets/image/mountain.jpg') no-repeat center center / cover; 
+}
+
+ion-col {
+    border: 1px solid #488aff;
+    background: #00000045;
+}
+ion-item.item-interactive.item-input.item-has-placeholder.item.md.ion-focusable.hydrated {
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+ion-button {
+    font-weight: 300;
+}
+
+@media (min-width: 240px) and (max-width: 768px) {
+    ion-grid {
+        background: $white-color;
+    }
+    ion-col {
+        border: none;
+    }
+}
