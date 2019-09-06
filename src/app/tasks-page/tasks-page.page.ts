@@ -22,7 +22,8 @@ export class TasksPagePage implements OnInit {
         // Chargement de list
         this.service
             .getById(1)
-            .subscribe(result => this.list = result.constructor(TaskList));
+            .subscribe(result =>
+                this.list = new TaskList(result));
     }
 
     /**
