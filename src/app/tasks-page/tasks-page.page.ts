@@ -12,16 +12,17 @@ import {Task} from "../model/task";
 })
 export class TasksPagePage implements OnInit {
 
-    tasklist: TaskList;
-    newTask = new Task();
+    list: TaskList;
+    todo = new Task();
 
     constructor(private route: ActivatedRoute, private service: TaskListService) {
     }
 
     ngOnInit() {
-      this.service
-          .getById(1)
-          .subscribe(result => this.tasklist = new TaskList(result));
+        // Chargement de list
+        this.service
+            .getById(1)
+            .subscribe(result => this.list = result.constructor(TaskList));
     }
 
     /**
@@ -29,36 +30,44 @@ export class TasksPagePage implements OnInit {
      * Si newTask.title n'est pas vide alors on renseigne les champs de newTask
      * et on crée task en BDD
      */
-    onClickAddTask() {
-        console.log('click');
-        if (this.newTask.title != null && this.newTask.title != '') {
-            this.newTask.priorize = false;
-            this.newTask.done = false;
-            this.newTask.creationDate = new Date();
-            this.newTask.dueDate = null;
-            const task = this.service.addTask(this.tasklist, this.newTask);
+    onAddClick() {
+        if (this.todo.title != null && this.todo.title != '') {
+            this.todo.priorize = false;
+            this.todo.done = false;
+            this.todo.creationDate = new Date();
+            this.todo.dueDate = null;
+            const task = this.service.addTask(this.list, this.todo);
             if (task) {
-                this.tasklist.tasks.push(task);
-                this.newTask = new Task();
+                this.list.tasks.push(task);
+                this.todo = new Task();
             }
         }
     }
 
     /**
-     * Méthode de mise à jour du champ priorize
+     * Méthode de mise à jour du champ 'priorize'
      * Inverse la valeur du champs 'priorize' et update task en BD
      * @param task
      */
     togglePriorize(task: Task) {
-      // TODO: implémenter togglePriorize
+        // TODO: implémenter togglePriorize
     }
 
     /**
+     * Méthode de mise à jour du champ 'done'
      * Inverse la valeur du champs 'done' et update task en BD
      * @param task
      */
     toggleDone(task: Task) {
         // TODO: inverser la valeur de done et update task
+    }
+
+    /**
+     * Méthode de suppression de task dans list
+     * @param task
+     */
+    onDeleteClick(task: Task) {
+        // TODO: supprimer la tâche
     }
 
 
