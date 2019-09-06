@@ -15,7 +15,7 @@ export class TaskMockService implements ITaskService {
       creationDate: null ,
       dueDate: null ,
       done: null ,
-      prioritize: null,
+      priorize: null,
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export class TaskMockService implements ITaskService {
       creationDate:  null,
       dueDate: null,
       done: null,
-      prioritize: null,
+      priorize: null,
     }
   ];
 

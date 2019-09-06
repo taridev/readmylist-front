@@ -9,16 +9,16 @@
 			</div>
 			<div padding>
 				<ion-item>
-					<ion-input type="text" placeholder="Username"></ion-input>
+					<ion-input type="text" placeholder="Username" [ngModel]="username"></ion-input>
 				</ion-item>
 
 				<ion-item>
-					<ion-input type="password" placeholder="Password"></ion-input>
+					<ion-input type="password" placeholder="Password" [ngModel]="password"></ion-input>
 				</ion-item>
 			</div>
 
 			<div padding>
-				<ion-button size="medium" href="/tasks-page" expand="block">OK</ion-button>
+				<ion-button size="medium" href="/tasks-page" expand="block" (click)="login()">OK</ion-button>
 			</div>
     </ion-col>
   
