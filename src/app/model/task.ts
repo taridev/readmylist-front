@@ -4,7 +4,7 @@ export class Task {
     creationDate: Date;
     dueDate: Date;
     done: boolean;
-    prioritize: boolean;
+    priorize: boolean;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
