@@ -4,6 +4,8 @@ import {TaskList} from '../model/task-list';
 import {ActivatedRoute} from '@angular/router';
 import {TaskListService} from "../services/TaskListService";
 import {Task} from "../model/task";
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
     selector: 'app-tasks-page',
@@ -14,8 +16,9 @@ export class TasksPagePage implements OnInit {
 
     list: TaskList;
     todo = new Task();
+    value = 0;
 
-    constructor(private route: ActivatedRoute, private service: TaskListService) {
+    constructor(private route: ActivatedRoute, private service: TaskListService, private modalController: ModalController) {
     }
 
     ngOnInit() {
@@ -25,6 +28,17 @@ export class TasksPagePage implements OnInit {
             .subscribe(result =>
                 this.list = new TaskList(result));
     }
+
+    async openModal() {
+      const modal = await this.modalController.create({
+        component: ModalPage,
+        componentProps: {
+          custom_id: this.value
+        }
+      });
+      modal.present();
+    }
+
 
     /**
      * Méthode d'ajout de task
@@ -52,6 +66,7 @@ export class TasksPagePage implements OnInit {
      */
     togglePriorize(task: Task) {
         // TODO: implémenter togglePriorize
+        // lance l'update du service task
     }
 
     /**
@@ -70,6 +85,8 @@ export class TasksPagePage implements OnInit {
     onDeleteClick(task: Task) {
         // TODO: supprimer la tâche
     }
+
+    
 
 
 }
