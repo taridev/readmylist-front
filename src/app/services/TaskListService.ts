@@ -27,8 +27,7 @@ export class TaskListService {
   }
 
   getById(id: number) {
-    const url = `${API_URL}list/${id}`;
-    let tasklist: TaskList;
+    const url = `${API_URL}/list/${id}`;
     return this.http
         .get(url);
   }
@@ -51,16 +50,15 @@ export class TaskListService {
   }
 
   addTask(taskList: TaskList, task: Task) {
-    var headers = new HttpHeaders();
-    const url = `${API_URL}task/create/${taskList.id}`;
-    headers.append("Accept", 'application/json');
+    const headers = new HttpHeaders();
+    const url = `${API_URL}/task/create/${taskList.id}`;
+    headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
     this.http.post(url, task)
-        .subscribe(data => {
-          console.log(data);
+        .subscribe(data =>
           task = new Task(data)
-        }, error => {
+        , error => {
           console.log(error);
         });
     return task;

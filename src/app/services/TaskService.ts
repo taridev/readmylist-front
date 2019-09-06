@@ -36,9 +36,11 @@ export class TaskService {
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
-    this.http.put(url, task)
-        .subscribe(data =>
-                task = new Task(data)
+    this.http
+        .put(url, task)
+        .subscribe(data => {
+                task = new Task(data);
+            }
             , error => {
               console.log(error);
             });
