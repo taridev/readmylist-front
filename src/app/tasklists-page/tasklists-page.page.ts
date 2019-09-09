@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TaskList} from '../model/task-list';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TaskListService} from '../services/TaskListService';
 
 @Component({
@@ -13,7 +13,7 @@ export class TasklistsPagePage implements OnInit {
   lists: TaskList[] = [];
   todo = new TaskList();
 
-  constructor(private route: ActivatedRoute, private service: TaskListService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private service: TaskListService) { }
 
   ngOnInit() {
   }
@@ -34,7 +34,7 @@ export class TasklistsPagePage implements OnInit {
           .create(this.todo)
           .subscribe(tasklist => {
             this.lists.push(tasklist);
-            this.todo = new TaskList();
+            this.router.navigate(['tasks-page/' + tasklist.id]);
           });
     }
   }
