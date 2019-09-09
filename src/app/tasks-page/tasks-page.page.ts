@@ -102,7 +102,4 @@ export class TasksPagePage implements OnInit {
         this.taskService.delete(task.id);
     }
 
-    
-
-
 }
