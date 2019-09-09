@@ -11,7 +11,7 @@ import {TaskListService} from '../services/TaskListService';
 export class TasklistsPagePage implements OnInit {
 
   lists: TaskList[];
-  todo = new TaskList();
+  newList = new TaskList();
 
   constructor(private route: ActivatedRoute, private router: Router, private service: TaskListService) { }
 
@@ -29,17 +29,17 @@ export class TasklistsPagePage implements OnInit {
    * et on crée task en BDD
    */
   onCreateClick() {
-    if (this.todo.title != null && this.todo.title !== '') {
-      // Initialisation de la nouvelle tâche (avec id = null)
-      this.todo = new TaskList({
-        title: this.todo.title,
+    if (this.newList.title != null && this.newList.title !== '') {
+      // Initialisation de la nouvelle list (avec id = null)
+      this.newList = new TaskList({
+        title: this.newList.title,
         creationDate: new Date(),
         tasks: []});
       this.service
-          .create(this.todo)
-          .subscribe(tasklist => {
-            this.lists.push(tasklist);
-            this.router.navigate(['tasks-page/' + tasklist.id]);
+          .create(this.newList)
+          .subscribe(listFromServer => {
+            this.lists.push(listFromServer);
+            this.router.navigate(['tasks-page/' + listFromServer.id]);
           });
     }
   }
