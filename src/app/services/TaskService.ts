@@ -50,7 +50,7 @@ export class TaskService {
      * /!\ Pas encore fonctionnel !!!
      * @param id
      */
-  delete(id) {
+  delete(id): Observable<object> {
     const headers = new HttpHeaders();
     const url = `${API_URL}/task/delete/${id}`;
 

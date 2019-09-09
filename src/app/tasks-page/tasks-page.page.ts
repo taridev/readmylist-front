@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskList} from '../model/task-list';
 import {ActivatedRoute} from '@angular/router';
-import {TaskListService} from "../services/TaskListService";
-import {Task} from "../model/task";
+import {TaskListService} from '../services/TaskListService';
+import {Task} from '../model/task';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import {TaskService} from '../services/TaskService';
@@ -16,7 +16,7 @@ export class TasksPagePage implements OnInit {
 
     list = new TaskList();
     todo = new Task();
-  
+
     constructor(
         private route: ActivatedRoute,
         private listService: TaskListService,
@@ -100,7 +100,23 @@ export class TasksPagePage implements OnInit {
      * @param task
      */
     onDeleteClick(task: Task) {
-        this.taskService.delete(task.id);
+        this.taskService
+            .delete(task.id)
+            .subscribe(() =>
+                this.popTask(task)
+            );
     }
 
+    /**
+     * Supprime de la liste la tâche passée en paramètre
+     * @param task la tâche à supprimer
+     */
+    private popTask(task: Task) {
+        for (let i = 0; i < this.list.tasks.length; i++) {
+            if (this.list.tasks[i].id === task.id) {
+                this.list.tasks.splice(i, 1);
+                break;
+            }
+        }
+    }
 }
