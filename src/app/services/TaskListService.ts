@@ -42,7 +42,16 @@ export class TaskListService {
   }
 
   create(taskList: TaskList): Observable<TaskList>  {
-    throw new Error('Method not implemented.');
+    const headers = new HttpHeaders();
+    const url = `${API_URL}/list/create`;
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    return this.http
+        .post(url, taskList)
+        .pipe(
+            // tslint:disable-next-line:ban-types
+            map((jsonObject: Object) => new TaskList(jsonObject))
+        );
   }
 
   update(taskList: TaskList): Observable<TaskList>  {
