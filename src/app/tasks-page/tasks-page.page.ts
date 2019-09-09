@@ -3,8 +3,8 @@ import {TaskList} from '../model/task-list';
 import {ActivatedRoute} from '@angular/router';
 import {TaskListService} from '../services/TaskListService';
 import {Task} from '../model/task';
-import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
+import {ModalController} from '@ionic/angular';
+import {ModalPage} from '../modal/modal.page';
 import {TaskService} from '../services/TaskService';
 
 @Component({
@@ -31,17 +31,38 @@ export class TasksPagePage implements OnInit {
         this.listService
             .getById(1)
             .subscribe(list => this.list = list);
-            
+
     }
 
     async openModal(task: Task) {
-      const modal = await this.modalController.create({
-        component: ModalPage,
-        componentProps: {
-          task: task
-        }
-      });
-      modal.present();
+        const modal = await this.modalController.create({
+            component: ModalPage,
+            componentProps: {
+                task: task
+            }
+        });
+
+        // Récupération des données fournies par la modal
+        modal.onDidDismiss().then(dataFromModal => {
+            if (dataFromModal !== null) {
+                const fromModal = dataFromModal.data;
+                this.taskService
+                    // Mise à jour de la Task
+                    .update(fromModal)
+                    .subscribe(dataFromServer => {
+                            // Mise à jour de la tâche affichée
+                            // avec les valeurs retournées par le serveur
+                            task.id = dataFromServer.id;
+                            task.priorize = dataFromServer.priorize;
+                            task.title = dataFromServer.title;
+                            task.done = dataFromServer.done;
+                            task.dueDate = dataFromServer.dueDate;
+                            task.creationDate = dataFromServer.creationDate;
+                        }
+                    );
+            }
+        });
+        return await modal.present();
 
     }
 
@@ -59,7 +80,8 @@ export class TasksPagePage implements OnInit {
                 priorize: false,
                 done: false,
                 creationDate: new Date(),
-                dueDate: null});
+                dueDate: null
+            });
             this.listService
                 .addTask(this.list, this.todo)
                 .subscribe(task => {

@@ -1,38 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalController, NavParams} from '@ionic/angular';
-import { modalController } from '@ionic/core';
-import { Task } from '../model/task';
-import {TaskService} from '../services/TaskService';
+import {Task} from '../model/task';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.page.html',
-  styleUrls: ['./modal.page.scss'],
+    selector: 'app-modal',
+    templateUrl: './modal.page.html',
+    styleUrls: ['./modal.page.scss'],
 })
 export class ModalPage implements OnInit {
 
-  task: Task;
+    task: Task;
+    clone : Task;
 
-  constructor(private navParams: NavParams, private modalController: ModalController,private taskService: TaskService,) {
-    this.task = this.navParams.get('task');
- }
+    constructor(
+        private navParams: NavParams,
+        private modalController: ModalController,
+    ) {
+    }
 
-  ngOnInit() {
-    // this.task.title = this.navParams.get('title');
-    // console.log(this.task.title);
-  }
+    ngOnInit() {
+        this.task = this.navParams.get('task');
+        this.clone = Object.assign({}, this.task);
+    }
 
-  closeModal(){
-    // this.modalController.dismiss();
-    this.modalController.dismiss('cancel');
-    
-  }
+    async closeModal() {
+        await this.modalController.dismiss();
 
-  saveData() {
-    this.taskService
-            .update(this.task)
-            .subscribe(jsonObject => console.log(new Task(jsonObject)));
-    this.modalController.dismiss('cancel');
-  }
+    }
+
+    async saveData() {
+        await this.modalController.dismiss(this.clone);
+    }
 
 }
