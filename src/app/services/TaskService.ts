@@ -1,30 +1,61 @@
 import { Injectable } from '@angular/core';
-import { ITaskService } from './itask.service';
 import { Task } from '../model/task';
+import {environment} from '../../environments/environment';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/abstract_emitter';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+
+const API_URL = environment.apiUrl;
+const HTTP_OPTION = {
+  headers: new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+      }
+  )
+};
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService implements ITaskService {
+export class TaskService {
+  constructor(private http: HttpClient) { }
 
-    getAllByTitlePattern(pattern: string): Task[] {
+  getAllByTitlePattern(pattern: string): Observable<Task[]> {
     throw new Error('Method not implemented.');
   }
-  getById(id: number): Task {
+  getById(id: number): Observable<Task> {
     throw new Error('Method not implemented.');
   }
-  getAll(): Task[] {
+  getAll(): Observable<Task[]> {
     throw new Error('Method not implemented.');
   }
-  create(task: Task): Task {
+  create(task: Task): Observable<Task> {
     throw new Error('Method not implemented.');
   }
-  update(task: Task): Task {
-    throw new Error('Method not implemented.');
-  }
-  delete(task: Task) {
-    throw new Error('Method not implemented.');
+    update(task: Task): Observable<Task> {
+        const headers = new HttpHeaders();
+        const url = `${API_URL}/task/update/${task.id}`;
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
+
+        return this.http
+            .put(url, task)
+            .pipe(
+                // tslint:disable-next-line:ban-types
+                map((jsonObject: Object) => new Task(jsonObject)));
+    }
+
+    /**
+     * /!\ Pas encore fonctionnel !!!
+     * @param id
+     */
+  delete(id) {
+    const headers = new HttpHeaders();
+    const url = `${API_URL}/task/delete/${id}`;
+
+    return this.http.delete(url);
   }
 
-  constructor() { }
+
 }
