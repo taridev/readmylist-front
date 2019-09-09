@@ -1,4 +1,4 @@
- <ion-header>
+<ion-header>
   <ion-toolbar>
     <ion-title>Modifier la tâche</ion-title>
     <ion-icon class="btn-close" name="close" slot="end" (click)="closeModal()"></ion-icon>
@@ -8,18 +8,18 @@
 <ion-content>
   <ion-item>
     <ion-label text-wrap position="fixed">Intitulé</ion-label>
-    <ion-input type="text" value="{{task.title}}"></ion-input>
+    <ion-input type="text" [(ngModel)]="task.title"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label text-wrap position="fixed">Date de création</ion-label>
-    <ion-datetime value="{{task.creationDate}}"></ion-datetime>
+    <ion-datetime disabled type="date" [(ngModel)]="task.creationDate"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label text-wrap position="fixed">Date limite</ion-label>
-    <ion-datetime value="{{task.dueDate}}"></ion-datetime>
+    <ion-datetime  type="date" [(ngModel)]="task.dueDate"></ion-datetime >
   </ion-item>
   <div>
-    <ion-button color="primary">Sauvegarder</ion-button>
+    <ion-button color="primary" (click)="saveData()">Sauvegarder</ion-button>
   </div>
 </ion-content>
 

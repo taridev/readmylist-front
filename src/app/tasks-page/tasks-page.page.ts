@@ -23,6 +23,7 @@ export class TasksPagePage implements OnInit {
         private taskService: TaskService,
         private modalController: ModalController
     ) {
+        console.log(this.list);
     }
 
     ngOnInit() {
@@ -30,6 +31,7 @@ export class TasksPagePage implements OnInit {
         this.listService
             .getById(1)
             .subscribe(list => this.list = list);
+            
     }
 
     async openModal(task: Task) {
@@ -86,7 +88,7 @@ export class TasksPagePage implements OnInit {
      * @param task
      */
     toggleDone(task: Task) {
-        task.done = !task.done;
+        task.done === true ? task.done = false : task.done = true;
         this.taskService
             .update(task)
             .subscribe((jsonObject =>
@@ -98,9 +100,6 @@ export class TasksPagePage implements OnInit {
      * @param task
      */
     onDeleteClick(task: Task) {
-        console.log(task.id);
-        // tslint:disable-next-line:prefer-for-of
-
         this.taskService
             .delete(task.id)
             .subscribe(() =>
