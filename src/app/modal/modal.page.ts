@@ -10,14 +10,10 @@ import { Task } from '../model/task';
 })
 export class ModalPage implements OnInit {
 
-  task: Task;er: ModalController) {
-creationDate:any;
-  dueDate:any;
+  task: Task;
 
-  constructor(private navParams: NavParam  
-  coate modntroluctovate nNavParams, plrs, private modalController: ModalController) {
+  constructor(private navParams: NavParams, private modalController: ModalController) {
     this.task = this.navParams.get('task');
-    console.log(this.task.creationDate);
  }
 
   ngOnInit() {
@@ -26,9 +22,14 @@ creationDate:any;
   }
 
   closeModal(){
-   et('title');
-  // console.log(this.task.title);
- r  // this.modalController.dismis  // this.modalismiss();
     // this.modalController.dismiss();
     this.modalController.dismiss('cancel');
     
+  }
+
+  saveData() {
+    console.log('save');
+    this.modalController.dismiss('cancel');
+  }
+
+}
