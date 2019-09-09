@@ -5,6 +5,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Task} from '../model/task';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {isJsonObject} from "@angular-devkit/core";
+import {create} from "domain";
+import any = jasmine.any;
 
 const API_URL = environment.apiUrl;
 const HTTP_OPTION = {
@@ -38,7 +41,9 @@ export class TaskListService {
 
 
   getAll(): Observable<TaskList[]> {
-    throw new Error('Method not implemented.');
+    const url = `${API_URL}/list`;
+    return this.http
+        .get<TaskList[]>(url);
   }
 
   create(taskList: TaskList): Observable<TaskList>  {
@@ -50,7 +55,8 @@ export class TaskListService {
         .post(url, taskList)
         .pipe(
             // tslint:disable-next-line:ban-types
-            map((jsonObject: Object) => new TaskList(jsonObject))
+            map((jsonObject: Object) =>
+                new TaskList(jsonObject))
         );
   }
 

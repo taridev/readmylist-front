@@ -10,12 +10,17 @@ import {TaskListService} from '../services/TaskListService';
 })
 export class TasklistsPagePage implements OnInit {
 
-  lists: TaskList[] = [];
+  lists: TaskList[];
   todo = new TaskList();
 
   constructor(private route: ActivatedRoute, private router: Router, private service: TaskListService) { }
 
   ngOnInit() {
+    this.service
+        .getAll()
+        .subscribe(lists =>
+            this.lists = lists
+    );
   }
 
   /**
