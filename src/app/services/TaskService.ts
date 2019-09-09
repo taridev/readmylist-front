@@ -53,8 +53,13 @@ export class TaskService {
   delete(id) {
     const headers = new HttpHeaders();
     const url = `${API_URL}/task/delete/${id}`;
-
-    return this.http.delete(url);
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    return this.http
+            .delete(url, id)
+            .pipe(
+                // tslint:disable-next-line:ban-types
+                map((jsonObject: Object) => new Task(jsonObject)));
   }
 
 

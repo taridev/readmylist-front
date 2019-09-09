@@ -85,6 +85,8 @@ export class TasksPagePage implements OnInit {
     onDeleteClick(task: Task) {
         console.log(task.id);
         this.taskService.delete(task.id);
+        // this.list.tasks.pop();
+
     }
 
 
