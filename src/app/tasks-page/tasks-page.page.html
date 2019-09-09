@@ -13,7 +13,7 @@
                     autofocus="true"
                     placeholder="Entrez une tâche"
                     [(ngModel)]="todo.title"></ion-input>
-            <ion-icon name="add-circle-outline" (click)="onAddClick()"></ion-icon>
+            <ion-icon name="add-circle-outline" (click)='onAddClick();'></ion-icon>
         </ion-item>
     </ion-item>
 
@@ -23,13 +23,16 @@
                     slot="start"
                     (click)="toggleDone(task)"
                     [name]="task.done ? 'radio-button-on' : 'radio-button-off'"[class.barre]="task.done"></ion-icon>
-            <ion-icon slot="start"
-                      (click)="onDeleteClick(task)"
-                      name="trash">
-            </ion-icon>
-            <ion-label>{{task.title}} - ffdd</ion-label>
-            <ion-icon (click)="togglePriorize(task)" [name]="task.priorize ? 'star' : 'star-outline'"></ion-icon>
+            <ion-label>{{task.title}}</ion-label>
+            <div slot="start">
+            <ion-checkbox color="primary" [checked]="task.done" (click)='toggleDone()'></ion-checkbox>
+            </div>
+            <ion-icon [name]="task.priorize ? 'star' : 'star-outline'" (click)='togglePriorize();'></ion-icon>
+            <ion-icon name="trash" (click)='onDeleteClick();'></ion-icon>
+            <ion-icon name="create" id="ion-modal" (click)='openModal(task);'></ion-icon>
         </ion-item>
     </ion-list>
-
+   
 </ion-content>
+
+

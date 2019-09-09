@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskList} from '../model/task-list';
 import {ActivatedRoute} from '@angular/router';
-import {Task} from '../model/task';
-import {TaskListService} from '../services/TaskListService';
+import {TaskListService} from "../services/TaskListService";
+import {Task} from "../model/task";
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 import {TaskService} from '../services/TaskService';
 
 @Component({
@@ -14,11 +16,12 @@ export class TasksPagePage implements OnInit {
 
     list = new TaskList();
     todo = new Task();
-
+  
     constructor(
         private route: ActivatedRoute,
         private listService: TaskListService,
-        private taskService: TaskService
+        private taskService: TaskService,
+        private modalController: ModalController
     ) {
     }
 
@@ -28,6 +31,18 @@ export class TasksPagePage implements OnInit {
             .getById(1)
             .subscribe(list => this.list = list);
     }
+
+    async openModal(task: Task) {
+      const modal = await this.modalController.create({
+        component: ModalPage,
+        componentProps: {
+          task: task
+        }
+      });
+      modal.present();
+
+    }
+
 
     /**
      * Méthode d'ajout de task
@@ -86,6 +101,8 @@ export class TasksPagePage implements OnInit {
         console.log(task.id);
         this.taskService.delete(task.id);
     }
+
+    
 
 
 }
