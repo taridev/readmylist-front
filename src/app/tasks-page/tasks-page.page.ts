@@ -108,12 +108,16 @@ export class TasksPagePage implements OnInit {
             );
     }
 
+    /**
+     * Supprime de la liste la tâche passée en paramètre
+     * @param task la tâche à supprimer
+     */
     private popTask(task: Task) {
         for (let i = 0; i < this.list.tasks.length; i++) {
-            if (this.list.id === task.id) {
+            if (this.list.tasks[i].id === task.id) {
                 // console.log(task.id);
                 this.list.tasks.splice(i, 1);
-                break;
+                // break;
             }
         }
     }
