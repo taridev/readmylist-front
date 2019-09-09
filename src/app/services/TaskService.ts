@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task } from '../model/task';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/abstract_emitter';
 
 const API_URL = environment.apiUrl;
 const HTTP_OPTION = {
@@ -46,8 +47,14 @@ export class TaskService {
             });
     return task;
   }
-  delete(task: Task) {
-    throw new Error('Method not implemented.');
+  delete(id) {
+    const headers = new HttpHeaders();
+    const url = `${API_URL}/task/delete/${id}`;
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Methods', 'DELETE');
+
+    return this.http.delete(url);
   }
 
 

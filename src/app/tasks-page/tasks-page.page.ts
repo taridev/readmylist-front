@@ -80,7 +80,8 @@ export class TasksPagePage implements OnInit {
      * @param task
      */
     onDeleteClick(task: Task) {
-        // TODO: supprimer la tâche
+        console.log(task.id);
+        this.taskService.delete(task.id);
     }
 
 
