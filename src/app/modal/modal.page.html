@@ -8,18 +8,18 @@
 <ion-content>
   <ion-item>
     <ion-label text-wrap position="fixed">Intitulé</ion-label>
-    <ion-input type="text" value="{{task.title}}"></ion-input>
+    <ion-input type="text" [(ngModel)]="task.title"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label text-wrap position="fixed">Date de création</ion-label>
-    <ion-input type="date" value="{{task.title}}"></ion-input>
+    <ion-datetime disabled type="date" [(ngModel)]="task.creationDate"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label text-wrap position="fixed">Date limite</ion-label>
-    <ion-input type="date" value="{{task.title}}"></ion-input>
+    <ion-datetime  type="date" [(ngModel)]="task.dueDate"></ion-datetime >
   </ion-item>
   <div>
-    <ion-button color="primary">Sauvegarder</ion-button>
+    <ion-button color="primary" (click)="saveData()">Sauvegarder</ion-button>
   </div>
 </ion-content>
 
