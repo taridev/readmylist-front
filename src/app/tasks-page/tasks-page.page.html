@@ -18,7 +18,11 @@
     </ion-item>
 
     <ion-list>
-        <ion-item *ngFor="let task of list.tasks" [class]="task.done ? 'barre' : ''">
+        <ion-item *ngFor="let task of list.tasks">
+            <ion-icon
+                    slot="start"
+                    (click)="toggleDone(task)"
+                    [name]="task.done ? 'radio-button-on' : 'radio-button-off'"[class.barre]="task.done"></ion-icon>
             <ion-label>{{task.title}}</ion-label>
             <div slot="start">
             <ion-checkbox color="primary" [checked]="task.done" (click)='toggleDone()'></ion-checkbox>
