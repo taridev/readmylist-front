@@ -16,7 +16,6 @@ export class TasksPagePage implements OnInit {
 
     list: TaskList;
     todo = new Task();
-    value = 0;
 
     constructor(private route: ActivatedRoute, private service: TaskListService, private modalController: ModalController) {
     }
@@ -29,14 +28,15 @@ export class TasksPagePage implements OnInit {
                 this.list = new TaskList(result));
     }
 
-    async openModal() {
+    async openModal(task: Task) {
       const modal = await this.modalController.create({
         component: ModalPage,
         componentProps: {
-          custom_id: this.value
+          task: task
         }
       });
       modal.present();
+
     }
 
 
@@ -67,6 +67,7 @@ export class TasksPagePage implements OnInit {
     togglePriorize(task: Task) {
         // TODO: implémenter togglePriorize
         // lance l'update du service task
+        console.log("Priorize");
     }
 
     /**
@@ -76,6 +77,7 @@ export class TasksPagePage implements OnInit {
      */
     toggleDone(task: Task) {
         // TODO: inverser la valeur de done et update task
+        console.log("Done");
     }
 
     /**
@@ -84,6 +86,7 @@ export class TasksPagePage implements OnInit {
      */
     onDeleteClick(task: Task) {
         // TODO: supprimer la tâche
+        console.log("Delete");
     }
 
     

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, NavParams} from '@ionic/angular';
 import { modalController } from '@ionic/core';
+import { Task } from '../model/task';
 
 @Component({
   selector: 'app-modal',
@@ -9,13 +10,15 @@ import { modalController } from '@ionic/core';
 })
 export class ModalPage implements OnInit {
 
-  passeId = null;
+  task: Task;
   
   constructor(private navParams: NavParams, private modalController: ModalController) {
+    this.task = this.navParams.get('task');
  }
 
   ngOnInit() {
-    this.passeId = 1;
+    // this.task.title = this.navParams.get('title');
+    // console.log(this.task.title);
   }
 
   closeModal(){
