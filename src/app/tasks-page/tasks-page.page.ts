@@ -12,7 +12,7 @@ import {TaskService} from '../services/TaskService';
 })
 export class TasksPagePage implements OnInit {
 
-    list: TaskList;
+    list = new TaskList();
     todo = new Task();
 
     constructor(
@@ -26,8 +26,7 @@ export class TasksPagePage implements OnInit {
         // Chargement de list
         this.listService
             .getById(1)
-            .subscribe(result =>
-                this.list = new TaskList(result));
+            .subscribe(list => this.list = list);
     }
 
     /**
@@ -37,15 +36,19 @@ export class TasksPagePage implements OnInit {
      */
     onAddClick() {
         if (this.todo.title != null && this.todo.title !== '') {
-            this.todo.priorize = false;
-            this.todo.done = false;
-            this.todo.creationDate = new Date();
-            this.todo.dueDate = null;
-            const task = this.listService.addTask(this.list, this.todo);
-            if (task) {
-                this.list.tasks.push(task);
-                this.todo = new Task();
-            }
+            // Initialisation de la nouvelle tâche (avec id = null)
+            this.todo = new Task({
+                title: this.todo.title,
+                priorize: false,
+                done: false,
+                creationDate: new Date(),
+                dueDate: null});
+            this.listService
+                .addTask(this.list, this.todo)
+                .subscribe(task => {
+                    this.list.tasks.push(task);
+                    this.todo = new Task();
+                });
         }
     }
 
@@ -56,10 +59,10 @@ export class TasksPagePage implements OnInit {
      */
     togglePriorize(task: Task) {
         task.priorize = !task.priorize;
-        this.taskService.update(task);
-        console.log(this.list.tasks.findIndex(t => t.id === task.id));
-        this.list.tasks[this.list.tasks.findIndex(t => t.id === task.id)] = task;
-        console.log(new Task(task));
+        this.taskService
+            .update(task)
+            .subscribe((jsonObject =>
+                this.list.tasks[this.list.tasks.findIndex(t => t.id === task.id)] = new Task(jsonObject)));
     }
 
     /**
@@ -69,10 +72,10 @@ export class TasksPagePage implements OnInit {
      */
     toggleDone(task: Task) {
         task.done = !task.done;
-        this.taskService.update(task);
-        console.log(this.list.tasks.findIndex(t => t.id === task.id));
-        this.list.tasks[this.list.tasks.findIndex(t => t.id === task.id)] = task;
-        console.log(new Task(task));
+        this.taskService
+            .update(task)
+            .subscribe((jsonObject =>
+                this.list.tasks[this.list.tasks.findIndex(t => t.id === task.id)] = new Task(jsonObject)));
     }
 
     /**
