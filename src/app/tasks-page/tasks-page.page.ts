@@ -115,9 +115,8 @@ export class TasksPagePage implements OnInit {
     private popTask(task: Task) {
         for (let i = 0; i < this.list.tasks.length; i++) {
             if (this.list.tasks[i].id === task.id) {
-                // console.log(task.id);
                 this.list.tasks.splice(i, 1);
-                // break;
+                break;
             }
         }
     }
