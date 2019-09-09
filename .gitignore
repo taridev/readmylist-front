@@ -810,3 +810,4 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/git,xcode,macos,ionic3,windows,android,angular,intellij,visualstudio,androidstudio
+src/app/modal/modal.page.html
