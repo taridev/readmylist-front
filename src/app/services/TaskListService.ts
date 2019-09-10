@@ -74,7 +74,6 @@ export class TaskListService {
     return this.http
         .post(url, task)
         .pipe(
-            // tslint:disable-next-line:ban-types
             map((jsonObject: Object) => new Task(jsonObject))
         );
   }

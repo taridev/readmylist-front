@@ -1,5 +1,7 @@
 {
   "name": "readmylist-front",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -10,7 +10,9 @@ const routes: Routes = [
     resolve: {
     special: DataResolverService
     },
-    loadChildren: './tasks-page/tasks-page.module#TasksPagePageModule' },
+    loadChildren: './tasks-page/tasks-page.module#TasksPagePageModule' 
+  },
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
 
 ];
 
