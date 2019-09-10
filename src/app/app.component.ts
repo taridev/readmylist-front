@@ -10,6 +10,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  menuItems = [
+    {title: 'Mes listes', url: '/list', icon: 'list'},
+    {title: 'Se déconnecter', url: '/disconnect', icon: 'log-out'},
+  ]
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
