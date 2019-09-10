@@ -6,6 +6,7 @@ import {Task} from '../model/task';
 import {ModalController} from '@ionic/angular';
 import {ModalPage} from '../modal/modal.page';
 import {TaskService} from '../services/TaskService';
+import {DataService} from "../services/data.service";
 
 @Component({
     selector: 'app-tasks-page',
@@ -16,6 +17,7 @@ export class TasksPagePage implements OnInit {
 
     list = new TaskList();
     todo = new Task();
+    data: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -27,9 +29,12 @@ export class TasksPagePage implements OnInit {
     }
 
     ngOnInit() {
+        if (this.route.snapshot.data.special) {
+            this.data = this.route.snapshot.data.special;
+        }
         // Chargement de list
         this.listService
-            .getById(1)
+            .getById(this.data.id)
             .subscribe(list => this.list = list);
 
     }
