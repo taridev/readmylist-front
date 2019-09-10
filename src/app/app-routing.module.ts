@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'list', loadChildren: './tasklists-page/tasklists-page.module#TasklistsPagePageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'list/:id',
     resolve: {
     special: DataResolverService
