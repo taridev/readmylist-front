@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>tasklists-page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-item class="centerInput">
+      <ion-input
+              id="inputModif"
+              autofocus="true"
+              placeholder="Créez une liste"
+              [(ngModel)]="newList.title"></ion-input>
+      <ion-icon name="add-circle-outline" (click)="onCreateClick()"></ion-icon>
+  </ion-item>
+
+  <ion-list>
+    <ion-item href="" *ngFor="let list of lists" (click)="goToList(list)">
+      <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+      <ion-label>{{list.title}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
