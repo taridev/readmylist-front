@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {TaskList} from '../model/task-list';
+import {TaskList} from '../../models/task-list';
 import {ActivatedRoute} from '@angular/router';
-import {TaskListService} from '../services/TaskListService';
-import {Task} from '../model/task';
+import {TaskListService} from '../../services/TaskListService';
+import {Task} from '../../models/task';
 import {ModalController} from '@ionic/angular';
 import {ModalPage} from '../modal/modal.page';
-import {TaskService} from '../services/TaskService';
-import {DataService} from '../services/data.service';
+import {TaskService} from '../../services/TaskService';
 
 @Component({
     selector: 'app-tasks-page',
@@ -17,7 +16,7 @@ export class TasksPagePage implements OnInit {
 
     list = new TaskList();
     todo = new Task();
-    data: any;
+    id: number;
 
     constructor(
         private route: ActivatedRoute,
@@ -25,16 +24,12 @@ export class TasksPagePage implements OnInit {
         private taskService: TaskService,
         private modalController: ModalController
     ) {
-        console.log(this.list);
     }
 
     ngOnInit() {
-        if (this.route.snapshot.data.special) {
-            this.data = this.route.snapshot.data.special;
-        }
-        // Chargement de list
+        this.id = +this.route.snapshot.paramMap.get('id');
         this.listService
-            .getById(this.data.id)
+            .getById(this.id)
             .subscribe(list => this.list = list);
 
     }
@@ -52,7 +47,7 @@ export class TasksPagePage implements OnInit {
             if (dataFromModal !== null) {
                 const fromModal = dataFromModal.data;
                 this.taskService
-                    // Mise à jour de la Task
+                // Mise à jour de la Task
                     .update(fromModal)
                     .subscribe(dataFromServer => {
                             // Mise à jour de la tâche affichée

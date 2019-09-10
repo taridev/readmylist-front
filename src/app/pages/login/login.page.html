@@ -9,11 +9,11 @@
 			</div>
 			<div padding>
 				<ion-item>
-					<ion-input type="text" placeholder="Username" [(ngModel)]="user.username"></ion-input>
+					<ion-input type="text" placeholder="Username" [(ngModel)]="user.username" (keyup.enter)="login()"></ion-input>
 				</ion-item>
 
 				<ion-item>
-					<ion-input type="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
+					<ion-input type="password" placeholder="Password" [(ngModel)]="user.password" (keyup.enter)="login()"></ion-input>
 				</ion-item>
 			</div>
 

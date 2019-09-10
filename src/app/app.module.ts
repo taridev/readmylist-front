@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BasicAuthInterceptor} from "./interceptors/basic-auth-interceptor";
-import { ModalPageModule } from './modal/modal.module';
+import { ModalPageModule } from './pages/modal/modal.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,4 +24,4 @@ import { ModalPageModule } from './modal/modal.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

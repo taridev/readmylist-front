@@ -15,14 +15,14 @@
                     id="inputModif"
                     autofocus="true"
                     placeholder="Entrez une tâche"
-                    [(ngModel)]="todo.title"></ion-input>
-            <ion-icon name="add-circle-outline" (click)='onAddClick();'></ion-icon>
+                    [(ngModel)]="todo.title"
+                    (keyup.enter)="onAddClick()"></ion-input>
         </ion-item>
     </div>
 
-    <ion-list>
+    <ion-list padding>
         <ion-item-sliding *ngFor="let task of list.tasks">
-                <ion-item-sliding lines="full"><ion-item>
+                <ion-item-sliding><ion-item>
                         <ion-icon
                                 (click)="toggleDone(task)"
                                 [name]="task.done ? 'ios-checkmark-circle-outline' : 'radio-button-off'"></ion-icon>

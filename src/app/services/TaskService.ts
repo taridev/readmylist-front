@@ -1,19 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../model/task';
+import { Task } from '../models/task';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/abstract_emitter';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 const API_URL = environment.apiUrl;
-const HTTP_OPTION = {
-  headers: new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-      }
-  )
-};
 
 @Injectable({
   providedIn: 'root'

@@ -14,13 +14,13 @@
               id="inputModif"
               autofocus="true"
               placeholder="Créez une liste"
+              (keyup.enter)="onCreateClick()"
               [(ngModel)]="newList.title"></ion-input>
-      <ion-icon name="add-circle-outline" (click)="onCreateClick()"></ion-icon>
   </ion-item>
 
-  <ion-list>
+  <ion-list padding>
       <ion-item-sliding *ngFor="let list of lists">
-          <ion-item-sliding lines="full"><ion-item>
+          <ion-item-sliding><ion-item>
             <ion-icon name="arrow-dropright" (click)="goToList(list)"></ion-icon>
             <ion-label (click)="goToList(list)">{{list.title}}</ion-label>
           </ion-item></ion-item-sliding>

@@ -1,19 +1,12 @@
 import {Injectable} from '@angular/core';
-import {TaskList} from '../model/task-list';
+import {TaskList} from '../models/task-list';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Task} from '../model/task';
+import {Task} from '../models/task';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 const API_URL = environment.apiUrl;
-const HTTP_OPTION = {
-  headers: new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-      }
-  )
-};
 
 @Injectable({
   providedIn: 'root'

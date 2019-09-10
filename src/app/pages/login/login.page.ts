@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../model/user";
-import {AuthenticationService} from "../services/auth.service";
+import {User} from "../../models/user";
+import {AuthenticationService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {first} from "rxjs/operators";
 
@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.user)
         .pipe(first())
         .subscribe(
-            data => {
+            () => {
               this.router.navigateByUrl('list');
             },
             error => {

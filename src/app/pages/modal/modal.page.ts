@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController, NavParams} from '@ionic/angular';
-import {Task} from '../model/task';
+import {Task} from '../../models/task';
 
 @Component({
     selector: 'app-modal',

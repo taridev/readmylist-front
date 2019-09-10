@@ -14,9 +14,9 @@ import {AuthenticationService} from "./services/auth.service";
 export class AppComponent {
 
   menuItems = [
-    {title: 'Mes listes', url: './list', icon: 'list'},
-    // {title: 'Se déconnecter', url: '/disconnect', icon: 'log-out'},
-  ]
+    {title: 'Mes listes', url: 'list', icon: 'list'},
+    {title: 'Se déconnecter', url: 'logout', icon: 'log-out'},
+  ];
   
   constructor(
     private platform: Platform,
