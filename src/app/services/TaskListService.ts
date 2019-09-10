@@ -61,8 +61,10 @@ export class TaskListService {
     throw new Error('Method not implemented.');
   }
 
-  delete(taskList: TaskList) {
-    throw new Error('Method not implemented.');
+  delete(id): Observable<object> {
+    const url = `${API_URL}/list/delete/${id}`;
+
+    return this.http.delete(url);
   }
 
   addTask(taskList: TaskList, task: Task): Observable<Task> {

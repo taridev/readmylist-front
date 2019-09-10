@@ -6,7 +6,7 @@ import {Task} from '../model/task';
 import {ModalController} from '@ionic/angular';
 import {ModalPage} from '../modal/modal.page';
 import {TaskService} from '../services/TaskService';
-import {DataService} from "../services/data.service";
+import {DataService} from '../services/data.service';
 
 @Component({
     selector: 'app-tasks-page',
