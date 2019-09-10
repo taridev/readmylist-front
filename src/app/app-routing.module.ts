@@ -12,7 +12,8 @@ const routes: Routes = [
     },
     loadChildren: './tasks-page/tasks-page.module#TasksPagePageModule' 
   },
-  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },  { path: 'modal-list', loadChildren: './modal-list/modal-list.module#ModalListPageModule' },
+
 
 ];
 

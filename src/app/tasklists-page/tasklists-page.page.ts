@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TaskListService} from '../services/TaskListService';
 import {DataService} from '../services/data.service';
 import {Task} from '../model/task';
+import { ModalController } from '@ionic/angular';
+import { ModalListPage } from '../modal-list/modal-list.page';
 
 @Component({
   selector: 'app-tasklists-page',
@@ -17,7 +19,8 @@ export class TasklistsPagePage implements OnInit {
   constructor(private route: ActivatedRoute,
               private dataService: DataService,
               private router: Router,
-              private service: TaskListService) { }
+              private service: TaskListService,
+              private modalListController: ModalController) { }
 
   ngOnInit() {
     this.service
@@ -27,6 +30,34 @@ export class TasklistsPagePage implements OnInit {
     );
   }
 
+
+  async openModalList(list: TaskList) {
+    const modal = await this.modalListController.create({
+        component: ModalListPage,
+        componentProps: {
+            list: TaskList
+        }
+    });
+
+    // Récupération des données fournies par la modal
+    modal.onDidDismiss().then(dataFromModal => {
+        if (dataFromModal !== null) {
+            const fromModal = dataFromModal.data;
+            this.service
+                // Mise à jour de la Task
+                .update(fromModal)
+                .subscribe(dataFromServer => {
+                        // Mise à jour de la tâche affichée
+                        // avec les valeurs retournées par le serveur
+                        list.id = dataFromServer.id;
+                        list.title = dataFromServer.title;
+                        list.creationDate = dataFromServer.creationDate;
+                    }
+                );
+        }
+    });
+    return await modal.present();
+  }
   /**
    * Méthode d'ajout de TaskList
    * Si newTaskList.title n'est pas vide alors on renseigne les champs de newTaskList

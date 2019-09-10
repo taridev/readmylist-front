@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Modifier la tâche</ion-title>
+    <ion-icon class="btn-close" name="close" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label text-wrap position="fixed">Intitulé</ion-label>
+    <ion-input type="text" [(ngModel)]="clone.title"></ion-input>
+  </ion-item>
+    <ion-button color="primary" (click)="saveData()">Sauvegarder</ion-button>
+</ion-content>
