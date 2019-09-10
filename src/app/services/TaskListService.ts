@@ -5,9 +5,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Task} from '../model/task';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {isJsonObject} from "@angular-devkit/core";
-import {create} from "domain";
-import any = jasmine.any;
 
 const API_URL = environment.apiUrl;
 const HTTP_OPTION = {
