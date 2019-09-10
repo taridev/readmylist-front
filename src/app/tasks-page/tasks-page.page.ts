@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskList} from '../model/task-list';
 import {ActivatedRoute} from '@angular/router';
-import {Task} from '../model/task';
 import {TaskListService} from '../services/TaskListService';
+import {Task} from '../model/task';
+import {ModalController} from '@ionic/angular';
+import {ModalPage} from '../modal/modal.page';
 import {TaskService} from '../services/TaskService';
+import {DataService} from "../services/data.service";
 
 @Component({
     selector: 'app-tasks-page',
@@ -14,20 +17,60 @@ export class TasksPagePage implements OnInit {
 
     list = new TaskList();
     todo = new Task();
+    data: any;
 
     constructor(
         private route: ActivatedRoute,
         private listService: TaskListService,
-        private taskService: TaskService
+        private taskService: TaskService,
+        private modalController: ModalController
     ) {
+        console.log(this.list);
     }
 
     ngOnInit() {
+        if (this.route.snapshot.data.special) {
+            this.data = this.route.snapshot.data.special;
+        }
         // Chargement de list
         this.listService
-            .getById(1)
+            .getById(this.data.id)
             .subscribe(list => this.list = list);
+
     }
+
+    async openModal(task: Task) {
+        const modal = await this.modalController.create({
+            component: ModalPage,
+            componentProps: {
+                task: task
+            }
+        });
+
+        // Récupération des données fournies par la modal
+        modal.onDidDismiss().then(dataFromModal => {
+            if (dataFromModal !== null) {
+                const fromModal = dataFromModal.data;
+                this.taskService
+                    // Mise à jour de la Task
+                    .update(fromModal)
+                    .subscribe(dataFromServer => {
+                            // Mise à jour de la tâche affichée
+                            // avec les valeurs retournées par le serveur
+                            task.id = dataFromServer.id;
+                            task.priorize = dataFromServer.priorize;
+                            task.title = dataFromServer.title;
+                            task.done = dataFromServer.done;
+                            task.dueDate = dataFromServer.dueDate;
+                            task.creationDate = dataFromServer.creationDate;
+                        }
+                    );
+            }
+        });
+        return await modal.present();
+
+    }
+
 
     /**
      * Méthode d'ajout de task
@@ -42,7 +85,8 @@ export class TasksPagePage implements OnInit {
                 priorize: false,
                 done: false,
                 creationDate: new Date(),
-                dueDate: null});
+                dueDate: null
+            });
             this.listService
                 .addTask(this.list, this.todo)
                 .subscribe(task => {
@@ -71,7 +115,7 @@ export class TasksPagePage implements OnInit {
      * @param task
      */
     toggleDone(task: Task) {
-        task.done = !task.done;
+        task.done === true ? task.done = false : task.done = true;
         this.taskService
             .update(task)
             .subscribe((jsonObject =>
@@ -83,9 +127,23 @@ export class TasksPagePage implements OnInit {
      * @param task
      */
     onDeleteClick(task: Task) {
-        console.log(task.id);
-        this.taskService.delete(task.id);
+        this.taskService
+            .delete(task.id)
+            .subscribe(() =>
+                this.popTask(task)
+            );
     }
 
-
+    /**
+     * Supprime de la liste la tâche passée en paramètre
+     * @param task la tâche à supprimer
+     */
+    private popTask(task: Task) {
+        for (let i = 0; i < this.list.tasks.length; i++) {
+            if (this.list.tasks[i].id === task.id) {
+                this.list.tasks.splice(i, 1);
+                break;
+            }
+        }
+    }
 }

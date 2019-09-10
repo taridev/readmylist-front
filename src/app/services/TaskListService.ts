@@ -38,11 +38,23 @@ export class TaskListService {
 
 
   getAll(): Observable<TaskList[]> {
-    throw new Error('Method not implemented.');
+    const url = `${API_URL}/list`;
+    return this.http
+        .get<TaskList[]>(url);
   }
 
   create(taskList: TaskList): Observable<TaskList>  {
-    throw new Error('Method not implemented.');
+    const headers = new HttpHeaders();
+    const url = `${API_URL}/list/create`;
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    return this.http
+        .post(url, taskList)
+        .pipe(
+            // tslint:disable-next-line:ban-types
+            map((jsonObject: Object) =>
+                new TaskList(jsonObject))
+        );
   }
 
   update(taskList: TaskList): Observable<TaskList>  {
@@ -62,7 +74,6 @@ export class TaskListService {
     return this.http
         .post(url, task)
         .pipe(
-            // tslint:disable-next-line:ban-types
             map((jsonObject: Object) => new Task(jsonObject))
         );
   }
