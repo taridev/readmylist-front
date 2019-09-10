@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {User} from "../model/user";
+import {environment} from "../../environments/environment";
 
+const API_URL = environment.apiUrl;
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -19,10 +21,14 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(`/users/authenticate`, { username, password })
-        .pipe(map(user => {
-          user.authdata = window.btoa(username + ':' + password);
+  login(user: User) {
+      console.log(user);
+      const url = `${API_URL}/user/authenticate`;
+      console.log(url);
+    return this.http.post(url, user)
+        .pipe(map(userJson => {
+          user = new User(userJson);
+          user.authdata = window.btoa(user.username + ':' + user.password);
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;

@@ -8,9 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BasicAuthInterceptor} from "./interceptors/basic-auth-interceptor";
-import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ModalPageModule } from './modal/modal.module';
 
 @NgModule({

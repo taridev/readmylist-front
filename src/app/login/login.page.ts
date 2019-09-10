@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../model/user";
+import {AuthenticationService} from "../services/auth.service";
+import {Router} from "@angular/router";
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -7,14 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  password = '';
-  username = '';
-  constructor() { }
+  user: User;
+  loading = false;
+  submitted = false;
 
-  ngOnInit() {
+
+  constructor(private authService: AuthenticationService, private router: Router) {
+    if (this.authService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
-  login() {    
-    console.log('====', this.username, this.password)
+  ngOnInit() {
+    this.user = new User();
+    this.user.id = null;
+  }
+
+  login() {
+    this.submitted = true;
+    this.loading = true;
+    this.authService.login(this.user)
+        .pipe(first())
+        .subscribe(
+            data => {
+              this.router.navigateByUrl('list');
+            },
+            error => {
+              console.log(error);
+              this.loading = false;
+            });
   }
 }

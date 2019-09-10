@@ -6,7 +6,7 @@ import {TaskService} from "../services/TaskService";
 import {Router} from "@angular/router";
 
 @Injectable()
-export class BasicAuthInterceptor implements HttpInterceptor{
+export class BasicAuthInterceptor implements HttpInterceptor {
 
     constructor(
         private router: Router,
@@ -17,7 +17,7 @@ export class BasicAuthInterceptor implements HttpInterceptor{
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const currentUser = { username: 'user', password: 'password'};
+        const currentUser = {username: 'user', password: 'password'};
         const credential = window.btoa(currentUser.username + ':' + currentUser.password);
         req = req.clone({
             setHeaders: {
