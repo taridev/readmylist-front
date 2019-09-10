@@ -45,6 +45,7 @@ export class TasklistsPagePage implements OnInit {
             this.lists.push(listFromServer);
             this.dataService.setData(listFromServer.id, listFromServer);
             this.router.navigate(['list/' + listFromServer.id]);
+            this.newList = new TaskList();
           });
     }
   }
