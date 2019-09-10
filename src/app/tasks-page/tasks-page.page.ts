@@ -31,7 +31,7 @@ export class TasksPagePage implements OnInit {
         this.listService
             .getById(1)
             .subscribe(list => this.list = list);
-            
+
     }
 
     async openModal(task: Task) {
