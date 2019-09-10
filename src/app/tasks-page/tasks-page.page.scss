@@ -10,13 +10,16 @@ ion-toolbar {
 #inputModif {
     text-align: center;
     width: 100px !important;
-    border: 1px solid #000;
-    // max-width: 65%;
+    border: 1px solid #dfdfdfc2;
  }
+
 
 .centerInput {
     margin: auto;
     min-width: 75%;
+    margin-bottom: 1em;
+    border: none;
+    margin-top: 1.5em;
 }
 
 ion-checkbox {
@@ -27,11 +30,11 @@ ion-checkbox {
     text-decoration: line-through;
 }
 
-.icon-check {
-    --color: green;
-}
-
 ion-item ion-icon {
     margin-left: 10px;
     color: #ababaf;
+}
+
+ion-label {
+    margin-left: 50px;
 }

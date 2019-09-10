@@ -12,8 +12,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
 
   menuItems = [
-    {title: 'Mes listes', url: '/list', icon: 'list'},
-    {title: 'Se déconnecter', url: '/disconnect', icon: 'log-out'},
+    {title: 'Mes listes', url: './list', icon: 'list'},
+    // {title: 'Se déconnecter', url: '/disconnect', icon: 'log-out'},
   ]
   
   constructor(
