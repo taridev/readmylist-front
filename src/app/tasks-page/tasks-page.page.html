@@ -24,7 +24,7 @@
         <ion-item lines="full" *ngFor="let task of list.tasks">
             <ion-icon
                     (click)="toggleDone(task)"
-                    [name]="task.done ? 'radio-button-on' : 'radio-button-off'"></ion-icon>
+                    [name]="task.done ? 'ios-checkmark-circle-outline' : 'radio-button-off'"></ion-icon>
             <ion-label [class.barre]="task.done">{{task.title}}</ion-label>
             <ion-icon (click)="togglePriorize(task)" [name]="task.priorize ? 'star' : 'star-outline'"></ion-icon>
             <ion-icon name="trash" (click)='onDeleteClick(task)'></ion-icon>
