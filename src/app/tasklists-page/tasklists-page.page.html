@@ -1,12 +1,15 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>tasklists-page</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
 
-  <ion-item class="centerInput">
+  <ion-item lines="none" class="centerInput">
       <ion-input
               id="inputModif"
               autofocus="true"
@@ -16,8 +19,8 @@
   </ion-item>
 
   <ion-list>
-    <ion-item href="" *ngFor="let list of lists" (click)="goToList(list)">
-      <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+    <ion-item lines="full" href="" *ngFor="let list of lists" (click)="goToList(list)">
+      <ion-icon name="arrow-dropright"></ion-icon>
       <ion-label>{{list.title}}</ion-label>
     </ion-item>
   </ion-list>
