@@ -37,6 +37,7 @@ export class TasklistsPagePage implements OnInit {
           .subscribe(listFromServer => {
             this.lists.push(listFromServer);
             this.router.navigate(['list/' + listFromServer.id]);
+            this.newList = new TaskList();
           });
     }
   }
