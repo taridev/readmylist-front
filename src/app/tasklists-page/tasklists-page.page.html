@@ -16,7 +16,8 @@
   </ion-item>
 
   <ion-list>
-    <ion-item *ngFor="let list of lists">
+    <ion-item href="" *ngFor="let list of lists" (click)="goToList(list)">
+      <ion-icon slot="end" name="arrow-dropright"></ion-icon>
       <ion-label>{{list.title}}</ion-label>
     </ion-item>
   </ion-list>

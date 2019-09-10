@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {DataResolverService} from './services/data-resolver.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tasks-page', pathMatch: 'full' },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-  { path: 'tasks-page', loadChildren: './tasks-page/tasks-page.module#TasksPagePageModule' },  { path: 'tasklists-page', loadChildren: './tasklists-page/tasklists-page.module#TasklistsPagePageModule' },
-
+  { path: 'list', loadChildren: './tasklists-page/tasklists-page.module#TasklistsPagePageModule' },
+  { path: 'list/:id',
+    resolve: {
+    special: DataResolverService
+    },
+    loadChildren: './tasks-page/tasks-page.module#TasksPagePageModule' },
 
 ];
 

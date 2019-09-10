@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Task} from '../model/task';
 import {TaskListService} from '../services/TaskListService';
 import {TaskService} from '../services/TaskService';
+import {DataService} from "../services/data.service";
 
 @Component({
     selector: 'app-tasks-page',
@@ -14,18 +15,22 @@ export class TasksPagePage implements OnInit {
 
     list = new TaskList();
     todo = new Task();
+    data: any;
 
     constructor(
         private route: ActivatedRoute,
         private listService: TaskListService,
-        private taskService: TaskService
+        private taskService: TaskService,
     ) {
     }
 
     ngOnInit() {
+        if (this.route.snapshot.data.special) {
+            this.data = this.route.snapshot.data.special;
+        }
         // Chargement de list
         this.listService
-            .getById(1)
+            .getById(this.data.id)
             .subscribe(list => this.list = list);
     }
 
