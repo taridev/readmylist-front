@@ -3,6 +3,7 @@ import {TaskList} from '../model/task-list';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TaskListService} from '../services/TaskListService';
 import {DataService} from '../services/data.service';
+import {Task} from '../model/task';
 
 @Component({
   selector: 'app-tasklists-page',
@@ -13,7 +14,10 @@ export class TasklistsPagePage implements OnInit {
   lists: TaskList[];
   newList = new TaskList();
 
-  constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router, private service: TaskListService) { }
+  constructor(private route: ActivatedRoute,
+              private dataService: DataService,
+              private router: Router,
+              private service: TaskListService) { }
 
   ngOnInit() {
     this.service
@@ -47,5 +51,29 @@ export class TasklistsPagePage implements OnInit {
   goToList(tasklist: TaskList) {
     this.dataService.setData(tasklist.id, tasklist);
     this.router.navigate(['list/' + tasklist.id], );
+  }
+  /**
+   * Méthode de suppression de task dans list
+   * service
+   */
+  onDeleteClick(service: TaskList) {
+    this.service
+        .delete(service.id)
+        .subscribe(() =>
+            this.popTaskList(service)
+        );
+  }
+
+  /**
+   * Supprime de la liste la tâche passée en paramètre
+   * @param service la tâche à supprimer
+   */
+  private popTaskList(service: TaskList) {
+    for (let i = 0; i < this.lists.length; i++) {
+      if (this.lists[i].id === service.id) {
+        this.lists.splice(i, 1);
+        break;
+      }
+    }
   }
 }

@@ -19,9 +19,10 @@
   </ion-item>
 
   <ion-list>
-    <ion-item lines="full" href="" *ngFor="let list of lists" (click)="goToList(list)">
-      <ion-icon name="arrow-dropright"></ion-icon>
+    <ion-item lines="full" href="" *ngFor="let list of lists">
+      <ion-icon name="arrow-dropright" (click)="goToList(list)"></ion-icon>
       <ion-label>{{list.title}}</ion-label>
+      <ion-icon name="trash" (click)="onDeleteClick(list)"></ion-icon>
     </ion-item>
   </ion-list>
 

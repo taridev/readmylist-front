@@ -51,7 +51,6 @@ export class TaskService {
      * @param id
      */
   delete(id): Observable<object> {
-    const headers = new HttpHeaders();
     const url = `${API_URL}/task/delete/${id}`;
 
     return this.http.delete(url);
