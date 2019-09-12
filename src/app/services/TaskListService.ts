@@ -1,19 +1,12 @@
 import {Injectable} from '@angular/core';
-import {TaskList} from '../model/task-list';
+import {TaskList} from '../models/task-list';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Task} from '../model/task';
+import {Task} from '../models/task';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 const API_URL = environment.apiUrl;
-const HTTP_OPTION = {
-  headers: new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-      }
-  )
-};
 
 @Injectable({
   providedIn: 'root'
@@ -38,19 +31,33 @@ export class TaskListService {
 
 
   getAll(): Observable<TaskList[]> {
-    throw new Error('Method not implemented.');
+    const url = `${API_URL}/list`;
+    return this.http
+        .get<TaskList[]>(url);
   }
 
   create(taskList: TaskList): Observable<TaskList>  {
-    throw new Error('Method not implemented.');
+    const headers = new HttpHeaders();
+    const url = `${API_URL}/list/create`;
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    return this.http
+        .post(url, taskList)
+        .pipe(
+            // tslint:disable-next-line:ban-types
+            map((jsonObject: Object) =>
+                new TaskList(jsonObject))
+        );
   }
 
   update(taskList: TaskList): Observable<TaskList>  {
     throw new Error('Method not implemented.');
   }
 
-  delete(taskList: TaskList) {
-    throw new Error('Method not implemented.');
+  delete(id): Observable<object> {
+    const url = `${API_URL}/list/delete/${id}`;
+
+    return this.http.delete(url);
   }
 
   addTask(taskList: TaskList, task: Task): Observable<Task> {

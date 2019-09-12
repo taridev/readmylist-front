@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController, NavParams} from '@ionic/angular';
-import {Task} from '../model/task';
+import {Task} from '../../models/task';
 
 @Component({
     selector: 'app-modal',
@@ -10,7 +10,7 @@ import {Task} from '../model/task';
 export class ModalPage implements OnInit {
 
     task: Task;
-    clone : Task;
+    clone: Task;
 
     constructor(
         private navParams: NavParams,
@@ -24,7 +24,7 @@ export class ModalPage implements OnInit {
     }
 
     async closeModal() {
-        await this.modalController.dismiss();
+        await this.modalController.dismiss(null);
 
     }
 

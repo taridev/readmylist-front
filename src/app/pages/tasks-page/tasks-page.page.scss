@@ -1,0 +1,53 @@
+ion-toolbar {
+    --background: url('/assets/image/mountain.jpg') no-repeat center center / cover; 
+    height: 200px;
+ }
+
+ ion-title {
+     color: #fff;
+ }
+
+#inputModif {
+    text-align: center;
+    width: 100px !important;
+    border: 1px solid #dfdfdfc2;
+ }
+
+
+.centerInput {
+    margin: auto;
+    min-width: 75%;
+    margin-bottom: 1em;
+    border: none;
+    margin-top: 1.5em;
+}
+
+ion-checkbox {
+    --border-radius: 50% !important;
+}
+
+.barre {
+    text-decoration: line-through;
+}
+
+ion-item ion-icon {
+    margin-left: 10px;
+    color: #ababaf;
+}
+
+ion-label {
+    margin-left: 50px;
+}
+
+ion-item-options ion-item{
+    --background: red;
+}
+
+ion-item-options ion-item ion-icon {
+    color: #eaeaed;
+        margin: auto;
+}
+
+.item-sliding-active-slide.item-sliding-active-options-end ion-item-options:not(.item-options-start) {
+    width: unset;
+}

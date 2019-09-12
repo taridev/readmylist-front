@@ -12,11 +12,11 @@
   </ion-item>
   <ion-item>
     <ion-label text-wrap position="fixed">Date de création</ion-label>
-    <ion-datetime disabled type="date" [(ngModel)]="clone.creationDate"></ion-datetime>
+    <ion-datetime disabled [(ngModel)]="clone.creationDate" display-format="MMM DD, YYYY HH:mm"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label text-wrap position="fixed">Date limite</ion-label>
-    <ion-datetime  type="date" [(ngModel)]="clone.dueDate"></ion-datetime >
+    <ion-datetime [(ngModel)]="clone.dueDate" display-format="MMM DD, YYYY HH:mm" max="2050-12-31"></ion-datetime >
   </ion-item>
   <div>
     <ion-button color="primary" (click)="saveData()">Sauvegarder</ion-button>
