@@ -37,14 +37,12 @@ export class TasksPagePage implements OnInit {
     async openModal(task: Task) {
         const modal = await this.modalController.create({
             component: ModalPage,
-            componentProps: {
-                task: task
-            }
+            componentProps: { task }
         });
 
         // Récupération des données fournies par la modal
         modal.onDidDismiss().then(dataFromModal => {
-            if (dataFromModal !== null) {
+            if (dataFromModal.data !== null && dataFromModal.role !== 'backdrop') {
                 const fromModal = dataFromModal.data;
                 this.taskService
                 // Mise à jour de la Task

@@ -10,7 +10,7 @@ import {Task} from '../../models/task';
 export class ModalPage implements OnInit {
 
     task: Task;
-    clone : Task;
+    clone: Task;
 
     constructor(
         private navParams: NavParams,
@@ -24,7 +24,7 @@ export class ModalPage implements OnInit {
     }
 
     async closeModal() {
-        await this.modalController.dismiss();
+        await this.modalController.dismiss(null);
 
     }
 
